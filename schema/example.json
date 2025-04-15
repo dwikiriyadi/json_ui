@@ -1,0 +1,68 @@
+{
+  "data": {
+    "key": "example_form",
+    "widget": "form",
+    "property": {
+
+    },
+    "state": {
+      "is_visible": true
+    },
+    "child": {
+      "key": "root_column",
+      "widget": "column",
+      "property": {
+        "spacing": 16.0
+      },
+      "state": {
+        "is_visible": true
+      },
+      "children": [
+        {
+          "key": "example_text",
+          "widget": "text",
+          "property": {
+          },
+          "state": {
+            "value": "Example",
+            "is_visible": true
+          }
+        },
+        {
+          "key": "example_text_field",
+          "widget": "text_field",
+          "property": {
+            "label": "Example Text Field",
+            "hint": "Fill this example",
+            "padding": {
+              "apply_to": "top, left, right, bottom",
+              "value": 8
+            },
+            "margin": {
+              "apply_to": "top, left, right, bottom",
+              "value": 16
+            }
+          },
+          "state": {
+            "value": "",
+            "is_visible": true,
+            "is_read_only": false
+          },
+          "validators": [
+
+          ]
+        },
+        {
+          "key": "example_button",
+          "widget": "button",
+          "property": {
+          },
+          "state": {
+            "value": "Simpan",
+            "is_visible": true
+          }
+        }
+      ]
+    }
+  }
+}

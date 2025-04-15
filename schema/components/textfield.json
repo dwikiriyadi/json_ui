@@ -1,0 +1,24 @@
+{
+  "key": "",
+  "widget": "text_field",
+  "property": {
+    "label": "",
+    "hint": "",
+    "padding": {
+      "apply_to": "top, left, right, bottom",
+      "value": 8
+    },
+    "margin": {
+      "apply_to": "top, left, right, bottom",
+      "value": 16
+    }
+  },
+  "state": {
+    "value": "",
+    "is_visible": true,
+    "is_read_only": false
+  },
+  "validators": [
+
+  ]
+}
