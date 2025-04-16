@@ -1,4 +1,4 @@
-import 'package:form_framework/widgets/core/sd_item_widget.dart';
+import 'package:json_ui/core/widget/sd_item_widget.dart';
 
 typedef SDRender = SDItemWidget Function(Map<String, dynamic>);
 
