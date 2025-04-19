@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:json_ui/core/sd_dispatcher.dart';
+import 'package:json_ui/core/dispatcher/sd_dispatcher.dart';
 import 'package:json_ui/core/widget/sd_item_widget.dart';
 
 class SDGenerator extends StatefulWidget {
