@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 part "sd_item_state.dart";
 
-abstract class SDItemWidget<T> extends StatefulWidget {
+abstract class SDItemWidget extends StatefulWidget {
   final Map<String, dynamic> data;
 
   /// Restoration ID to save and restore the state of the form field.
