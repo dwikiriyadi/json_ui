@@ -2,9 +2,9 @@
   "key": "",
   "widget": "button",
   "property": {
+    "label": ""
   },
   "state": {
-    "value": "",
     "is_visible": true
   }
 }
