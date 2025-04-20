@@ -143,11 +143,11 @@ class SDGeneratorState extends State<SDGenerator> {
 
   // Called when a form field has changed. This will cause all form fields
   // to rebuild, useful if form fields have interdependencies.
-  void _fieldDidChange() {
+  void fieldDidChange() {
     widget.onChanged?.call();
 
     _hasInteractedByUser = _fields.any(
-          (SDFieldItemState<dynamic> field) => field._hasInteractedByUser.value,
+      (SDFieldItemState<dynamic> field) => field.hasInteractedByUser,
     );
     _forceRebuild();
   }

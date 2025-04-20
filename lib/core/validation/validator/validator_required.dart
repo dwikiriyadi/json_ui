@@ -5,9 +5,9 @@ class RequiredValidator extends Validator {
   RequiredValidator({required super.data});
 
   @override
-  ValidatorResult? call<T>({required T value}) {
+  String? call<T>({required T value}) {
     if (value != null) {
-      return ValidatorResult(message: data["message"]);
+      return data["message"];
     } else {
       return null;
     }

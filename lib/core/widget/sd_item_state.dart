@@ -1,6 +1,6 @@
 part of "sd_item_widget.dart";
 
-abstract class SDItemState extends State<SDItemWidget> {
+abstract class SDItemState<T extends SDItemWidget> extends State<T> {
   late String key = widget.data["key"];
 
   late bool isVisible = widget.data["state"]["is_visible"] ?? true;
