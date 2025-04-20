@@ -16,4 +16,9 @@ abstract class SDItemState<T extends SDItemWidget> extends State<T> {
     SDGenerator.maybeOf(context)?.unregister(this);
     super.deactivate();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.builder(context, this);
+  }
 }

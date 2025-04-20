@@ -2,9 +2,23 @@
   "key": "",
   "widget": "button",
   "property": {
-    "label": ""
+    "text": "",
+    "font_size": null,
+    "font_weight": "normal",
+    "text_color": null,
+    "background_color": null,
+    "disabled_color": null,
+    "padding": {
+      "left": 16.0,
+      "top": 8.0,
+      "right": 16.0,
+      "bottom": 8.0
+    },
+    "shape": "rounded",
+    "border_radius": 4.0
   },
   "state": {
-    "is_visible": true
+    "is_visible": true,
+    "is_enable": true
   }
 }

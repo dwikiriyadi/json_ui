@@ -13,7 +13,7 @@ class ValidatorDispatcher {
   }
 
   static Validator? resolve(Map<String, dynamic> data) {
-    return _registered[data["name"]]?.call(data);
+    return _registered[data["type"]]?.call(data);
   }
 
   static void clear() {

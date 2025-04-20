@@ -138,8 +138,27 @@ class SDGeneratorState extends State<SDGenerator> {
   late final Set<SDFieldItemState<dynamic>> _fields =
       _items.whereType<SDFieldItemState>().toSet();
 
-  T? stateOf<T extends SDItemState>(String key) =>
-      _items.firstWhere((item) => item.key == key) as T;
+  // Cache for stateOf lookups
+  final Map<String, SDItemState> _stateCache = {};
+
+  T? stateOf<T extends SDItemState>(String key) {
+    // Check cache first
+    if (_stateCache.containsKey(key)) {
+      final state = _stateCache[key];
+      if (state is T) {
+        return state as T;
+      }
+    }
+
+    // If not in cache or wrong type, look it up and cache it
+    try {
+      final state = _items.firstWhere((item) => item.key == key);
+      _stateCache[key] = state;
+      return state as T;
+    } catch (e) {
+      return null;
+    }
+  }
 
   // Called when a form field has changed. This will cause all form fields
   // to rebuild, useful if form fields have interdependencies.
@@ -159,11 +178,61 @@ class SDGeneratorState extends State<SDGenerator> {
   }
 
   void register(SDItemState item) {
-    _items.add(item);
+    if (!_items.contains(item)) {
+      _items.add(item);
+      // Clear the cache when a new item is registered
+      _stateCache.remove(item.key);
+    }
   }
 
   void unregister(SDItemState item) {
     _items.remove(item);
+    // Clear the cache when an item is unregistered
+    _stateCache.remove(item.key);
+  }
+
+  /// Validates all the form fields according to their [SDFieldItemState.validators].
+  ///
+  /// Returns true if all form fields are valid, false if any field is invalid.
+  /// 
+  /// If [forceValidation] is true, all fields will be validated regardless of their
+  /// current validation state. If false (default), only fields that are currently
+  /// invalid or have not been validated will be validated.
+  bool validate({bool forceValidation = false}) {
+    bool hasError = false;
+    bool needsRebuild = false;
+    _hasInteractedByUser = true;
+
+    for (final field in _fields) {
+      // Skip validation for fields that are already valid and don't need revalidation
+      if (!forceValidation && field.isValid && field.hasInteractedByUser) {
+        // Still check if the field has an error
+        if (!field.isValid) {
+          hasError = true;
+        }
+        continue;
+      }
+
+      // Validate the field
+      final wasValid = field.isValid;
+      field.validate();
+
+      // Check if validation changed the field's state
+      if (wasValid != field.isValid) {
+        needsRebuild = true;
+      }
+
+      if (!field.isValid) {
+        hasError = true;
+      }
+    }
+
+    // Only rebuild if necessary
+    if (needsRebuild) {
+      _forceRebuild();
+    }
+
+    return !hasError;
   }
 
   @override
@@ -177,6 +246,9 @@ class SDGeneratorState extends State<SDGenerator> {
 
   @override
   void dispose() {
+    // Clear all collections to prevent memory leaks
+    _items.clear();
+    _stateCache.clear();
     super.dispose();
   }
 

@@ -1,4 +1,3 @@
-import 'package:json_ui/core/validation/model/validator_result.dart';
 import 'package:json_ui/core/validation/validator.dart';
 
 class RequiredValidator extends Validator {
@@ -6,10 +5,15 @@ class RequiredValidator extends Validator {
 
   @override
   String? call<T>({required T value}) {
-    if (value != null) {
+    if (value == null) {
       return data["message"];
-    } else {
-      return null;
     }
+
+    // For string values, check if they're empty
+    if (value is String && value.trim().isEmpty) {
+      return data["message"];
+    }
+
+    return null;
   }
 }

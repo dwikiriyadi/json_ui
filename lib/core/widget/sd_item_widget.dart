@@ -7,7 +7,7 @@ part "sd_item_state.dart";
 ///
 /// Used by [SDItemWidget.builder].
 typedef SDItemBuilder<T extends SDItemWidget> =
-    Widget Function(SDItemState<T> field);
+    Widget Function(BuildContext context, SDItemState<T> field);
 
 abstract class SDItemWidget extends StatefulWidget {
   final Map<String, dynamic> data;

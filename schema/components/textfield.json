@@ -2,21 +2,32 @@
   "key": "",
   "widget": "text_field",
   "property": {
-    "label": "",
-    "hint": "",
-    "padding": {
-      "apply_to": "top, left, right, bottom",
-      "value": 8
-    },
-    "margin": {
-      "apply_to": "top, left, right, bottom",
-      "value": 16
+    "label_text": "",
+    "hint_text": "",
+    "helper_text": "",
+    "prefix_text": "",
+    "suffix_text": "",
+    "border": "underline",
+    "keyboard_type": "text",
+    "text_input_action": "done",
+    "text_capitalization": "none",
+    "text_align": "start",
+    "obscure_text": false,
+    "max_lines": null,
+    "min_lines": null,
+    "max_length": null,
+    "auto_validate_mode": "disabled",
+    "style": {
+      "font_size": null,
+      "font_weight": "normal",
+      "color": null
     }
   },
   "state": {
     "value": "",
     "is_visible": true,
-    "is_read_only": false
+    "is_read_only": false,
+    "is_enable": true
   },
   "validators": [
 

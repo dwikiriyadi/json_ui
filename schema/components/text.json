@@ -2,7 +2,13 @@
   "key": "",
   "widget": "text",
   "property": {
-    "text": ""
+    "text": "",
+    "font_size": null,
+    "font_weight": "normal",
+    "color": null,
+    "text_align": "start",
+    "overflow": null,
+    "max_lines": null
   },
   "state": {
     "is_visible": true

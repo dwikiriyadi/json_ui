@@ -183,6 +183,9 @@ abstract class SDFieldItemState<T> extends SDItemState<SDFieldItemWidget<T>>
 
   @override
   Widget build(BuildContext context) {
+    // Get the generator state once to avoid multiple lookups
+    final generatorState = SDGenerator.maybeOf(context);
+
     if (isEnable) {
       switch (autovalidateMode) {
         case AutovalidateMode.always:
@@ -197,12 +200,17 @@ abstract class SDFieldItemState<T> extends SDItemState<SDFieldItemWidget<T>>
       }
     }
 
-    SDGenerator.maybeOf(context)?.register(this);
+    // Register with the generator if available
+    generatorState?.register(this);
 
-    if (SDGenerator.maybeOf(context)?.widget.autovalidateMode ==
-                AutovalidateMode.onUnfocus &&
-            autovalidateMode != AutovalidateMode.always ||
-        autovalidateMode == AutovalidateMode.onUnfocus) {
+    // Check if we need to wrap with Focus for onUnfocus validation
+    final generatorAutovalidateMode = generatorState?.widget.autovalidateMode;
+    final needsFocusWrapper = 
+        (generatorAutovalidateMode == AutovalidateMode.onUnfocus && 
+         autovalidateMode != AutovalidateMode.always) || 
+        autovalidateMode == AutovalidateMode.onUnfocus;
+
+    if (needsFocusWrapper) {
       return Focus(
         canRequestFocus: false,
         skipTraversal: true,
@@ -214,10 +222,10 @@ abstract class SDFieldItemState<T> extends SDItemState<SDFieldItemWidget<T>>
           }
         },
         focusNode: focusNode,
-        child: widget.builder(this),
+        child: widget.builder(context, this),
       );
     }
 
-    return widget.builder(this);
+    return widget.builder(context, this);
   }
 }

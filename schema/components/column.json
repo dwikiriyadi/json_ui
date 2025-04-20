@@ -2,12 +2,12 @@
   "key": "",
   "widget": "column",
   "property": {
-
+    "main_axis_alignment": "start",
+    "cross_axis_alignment": "center",
+    "main_axis_size": "max"
   },
   "state": {
     "is_visible": true
   },
-  "children": [
-
-  ]
+  "children": []
 }
