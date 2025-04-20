@@ -146,7 +146,7 @@ class SDGeneratorState extends State<SDGenerator> {
     if (_stateCache.containsKey(key)) {
       final state = _stateCache[key];
       if (state is T) {
-        return state as T;
+        return state;
       }
     }
 

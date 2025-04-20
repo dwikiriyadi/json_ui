@@ -19,6 +19,10 @@ abstract class SDItemState<T extends SDItemWidget> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the generator state once and register with it if available
+    final generatorState = SDGenerator.maybeOf(context);
+    generatorState?.register(this);
+
     return widget.builder(context, this);
   }
 }
