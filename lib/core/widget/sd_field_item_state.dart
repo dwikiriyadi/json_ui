@@ -1,6 +1,6 @@
 part of "sd_field_item_widget.dart";
 
-abstract class SDFieldItemState<T> extends SDItemState {
+abstract class SDFieldItemState<T> extends SDItemState with RestorationMixin {
   late T? _value = widget.data["state"]["value"];
 
   T? get value => _value;

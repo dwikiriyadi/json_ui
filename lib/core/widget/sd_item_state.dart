@@ -1,7 +1,6 @@
 part of "sd_item_widget.dart";
 
-abstract class SDItemState<T> extends State<SDItemWidget>
-    with RestorationMixin {
+abstract class SDItemState extends State<SDItemWidget> {
   late String key = widget.data["key"];
 
   late bool isVisible = widget.data["state"]["is_visible"] ?? true;
@@ -10,5 +9,11 @@ abstract class SDItemState<T> extends State<SDItemWidget>
     setState(() {
       isVisible = value;
     });
+  }
+
+  @override
+  void deactivate() {
+    SDGenerator.maybeOf(context)?.unregister(this);
+    super.deactivate();
   }
 }

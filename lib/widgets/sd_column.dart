@@ -5,6 +5,13 @@ import 'package:json_ui/core/widget/sd_item_widget.dart';
 class SDColumn extends SDItemWidget {
   const SDColumn({super.key, required super.data, super.restorationId});
 
+  static void register() {
+    SDDispatcher.register(
+      componentName: "column",
+      widget: (data) => SDColumn(data: data),
+    );
+  }
+
   @override
   State<StatefulWidget> createState() => SDColumnState();
 }
@@ -19,13 +26,5 @@ class SDColumnState extends SDItemState {
               .map((item) => SDDispatcher.render(item: item) as Widget)
               .toList(),
     );
-  }
-
-  @override
-  String? get restorationId => widget.restorationId;
-
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    // TODO: implement restoreState
   }
 }
