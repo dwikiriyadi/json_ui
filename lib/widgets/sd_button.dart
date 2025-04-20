@@ -15,18 +15,8 @@ class SDButton extends SDContainerItemWidget {
             onPressed: buttonState.triggerOnPressed,
             style: Theme.of(context).elevatedButtonTheme.style,
             child: Text(
-              state.widget.data["property"]?["text"] ?? "",
-              style: TextStyle(
-                fontSize:
-                    state.widget.data["property"]?["font_size"]?.toDouble(),
-                fontWeight: FontWeightProperty.getFontWeight(
-                  state.widget.data["property"]?["font_weight"],
-                ),
-                color: custom.ColorProperty.getColor(
-                  state.widget.data["property"],
-                  "text_color",
-                ),
-              ),
+              buttonState.text,
+              style: buttonState.textStyle,
             ),
           );
         },
@@ -44,5 +34,35 @@ class SDButton extends SDContainerItemWidget {
 }
 
 class SDButtonState extends SDContainerItemState<SDButton> with SDPressed {
-  // No need to override build as it's already implemented in SDContainerItemState
+  // Cached property values
+  String? _cachedText;
+  TextStyle? _cachedTextStyle;
+
+  // Property getters with memoization
+  String get text {
+    return _cachedText ??= widget.data["property"]?["text"] ?? "";
+  }
+
+  TextStyle get textStyle {
+    _cachedTextStyle ??= TextStyle(
+        fontSize: widget.data["property"]?["font_size"]?.toDouble(),
+        fontWeight: FontWeightProperty.getFontWeight(
+          widget.data["property"]?["font_weight"],
+        ),
+        color: custom.ColorProperty.getColor(
+          widget.data["property"],
+          "text_color",
+        ),
+      );
+    return _cachedTextStyle!;
+  }
+
+  @override
+  void dispose() {
+    // Clear all cached properties to prevent memory leaks
+    _cachedText = null;
+    _cachedTextStyle = null;
+
+    super.dispose();
+  }
 }
