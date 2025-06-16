@@ -3,6 +3,9 @@
 A new Flutter project.
 
 <!-- GitAds-Verify: 9HZLXJ8BKCVAWNYFY477RKCGVNOA9HCJ -->
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=srctool/flutter-json-ui@github)](https://gitads.dev/v1/ad-track?source=srctool/flutter-json-ui@github)
+
 
 ## Getting Started
 
